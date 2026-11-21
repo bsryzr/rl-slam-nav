@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot name="depo_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Degiskenler - boyutlari tek yerden degistirmek icin -->
+  <xacro:property name="govde_x" value="0.40"/>
+  <xacro:property name="govde_y" value="0.30"/>
+  <xacro:property name="govde_z" value="0.12"/>
+
+  <!-- base_link - robotun referans noktasi. Nav2/AMCL bu adi arar. -->
+  <link name="base_link"/>
+
+  <!-- Govde - turuncu bir kutu -->
+  <link name="chassis">
+    <visual>
+      <geometry><box size="${govde_x} ${govde_y} ${govde_z}"/></geometry>
+      <material name="turuncu"><color rgba="1 0.5 0 1"/></material>
+    </visual>
+  </link>
+
+  <!-- Govdeyi base_linke sabitle, 8 cm yukari -->
+  <joint name="chassis_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="chassis"/>
+    <origin xyz="0 0 0.08"/>
+  </joint>
+
+</robot>
